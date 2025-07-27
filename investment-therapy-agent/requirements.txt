@@ -1,0 +1,11 @@
+streamlit==1.29.0
+google-cloud-aiplatform==1.38.0
+google-generativeai==0.3.2
+pandas==2.1.4
+python-dotenv==1.0.0
+yfinance==0.2.18
+requests==2.31.0
+beautifulsoup4==4.12.2
+feedparser==6.0.10
+
+psutil==5.9.0

@@ -1,0 +1,267 @@
+{
+  "user_id": "user_12345",
+  "timestamp": "2025-01-26T10:30:00Z",
+  "portfolio": {
+    "total_market_value": 285750.50,
+    "cash_balance": 12450.25,
+    "total_return": 35350.75,
+    "total_return_percent": 14.15,
+    "day_change": -3150.30,
+    "day_change_percent": -1.09,
+    "week_change": 4420.60,
+    "month_change": -1850.40,
+    "ytd_change": 18200.30,
+    "holdings": [
+      {
+        "symbol": "SPY",
+        "company_name": "SPDR S&P 500 ETF",
+        "quantity": 180.0,
+        "current_price": 580.25,
+        "market_value": 104445.00,
+        "cost_basis": 95000.00,
+        "unrealized_pnl": 9445.00,
+        "allocation_percent": 36.55,
+        "sector": "Diversified",
+        "risk_level": "low",
+        "emotional_impact": "low"
+      },
+      {
+        "symbol": "QQQ",
+        "company_name": "Invesco QQQ Trust",
+        "quantity": 85.0,
+        "current_price": 485.80,
+        "market_value": 41293.00,
+        "cost_basis": 38000.00,
+        "unrealized_pnl": 3293.00,
+        "allocation_percent": 14.45,
+        "sector": "Technology",
+        "risk_level": "medium",
+        "emotional_impact": "medium"
+      },
+      {
+        "symbol": "AAPL",
+        "company_name": "Apple Inc.",
+        "quantity": 125.0,
+        "current_price": 178.45,
+        "market_value": 22306.25,
+        "cost_basis": 21000.00,
+        "unrealized_pnl": 1306.25,
+        "allocation_percent": 7.81,
+        "sector": "Technology",
+        "risk_level": "medium",
+        "emotional_impact": "medium"
+      },
+      {
+        "symbol": "MSFT",
+        "company_name": "Microsoft Corporation",
+        "quantity": 55.0,
+        "current_price": 425.80,
+        "market_value": 23419.00,
+        "cost_basis": 22000.00,
+        "unrealized_pnl": 1419.00,
+        "allocation_percent": 8.20,
+        "sector": "Technology",
+        "risk_level": "medium",
+        "emotional_impact": "medium"
+      },
+      {
+        "symbol": "TSLA",
+        "company_name": "Tesla Inc.",
+        "quantity": 45.0,
+        "current_price": 248.50,
+        "market_value": 11182.50,
+        "cost_basis": 13500.00,
+        "unrealized_pnl": -2317.50,
+        "allocation_percent": 3.91,
+        "sector": "Automotive",
+        "risk_level": "high",
+        "emotional_impact": "high"
+      },
+      {
+        "symbol": "VTI",
+        "company_name": "Vanguard Total Stock Market ETF",
+        "quantity": 95.0,
+        "current_price": 275.30,
+        "market_value": 26153.50,
+        "cost_basis": 24000.00,
+        "unrealized_pnl": 2153.50,
+        "allocation_percent": 9.15,
+        "sector": "Diversified",
+        "risk_level": "low",
+        "emotional_impact": "low"
+      }
+    ]
+  },
+  "behavioral_history": {
+    "stress_triggers": [
+      {
+        "date": "2024-12-15",
+        "trigger": "market_dip",
+        "action": "panic_sell",
+        "symbol": "NVDA",
+        "amount": 5000,
+        "regret_level": 8
+      },
+      {
+        "date": "2024-11-20",
+        "trigger": "fomo",
+        "action": "impulse_buy",
+        "symbol": "TSLA",
+        "amount": 3000,
+        "regret_level": 6
+      }
+    ],
+    "emotional_patterns": {
+      "risk_comfort": "moderate_aggressive",
+      "volatility_tolerance": 6,
+      "loss_aversion_score": 7,
+      "fomo_tendency": 8,
+      "patience_level": 4
+    },
+    "investment_behavior": {
+      "avg_holding_period": "18_months",
+      "panic_sell_frequency": 3,
+      "impulse_buy_frequency": 5,
+      "sip_consistency": 0.85,
+      "rebalancing_frequency": "quarterly"
+    }
+  },
+  "transactions": [
+    {
+      "transaction_id": "txn_001",
+      "date": "2025-01-22",
+      "transaction_type": "BUY",
+      "symbol": "VTI",
+      "quantity": 15.0,
+      "price": 275.30,
+      "total_amount": 4129.50,
+      "emotional_tag": "systematic",
+      "confidence_level": 8,
+      "description": "Monthly systematic investment"
+    },
+    {
+      "transaction_id": "txn_002",
+      "date": "2025-01-20",
+      "transaction_type": "SELL",
+      "symbol": "TSLA",
+      "quantity": 10.0,
+      "price": 245.80,
+      "total_amount": 2458.00,
+      "emotional_tag": "anxious",
+      "confidence_level": 4,
+      "description": "Reducing volatile position due to stress"
+    },
+    {
+      "transaction_id": "txn_003",
+      "date": "2025-01-18",
+      "transaction_type": "BUY",
+      "symbol": "AAPL",
+      "quantity": 25.0,
+      "price": 176.20,
+      "total_amount": 4405.00,
+      "emotional_tag": "confident",
+      "confidence_level": 9,
+      "description": "Adding to core position after earnings"
+    }
+  ],
+  "investment_universe": {
+    "available_funds": [
+      {
+        "symbol": "VOO",
+        "name": "Vanguard S&P 500 ETF",
+        "category": "large_cap_blend",
+        "risk_level": "low",
+        "min_investment": 100,
+        "expense_ratio": 0.03,
+        "historical_volatility": 15.2,
+        "emotional_suitability": "stress_averse",
+        "description": "Broad market exposure with low fees"
+      },
+      {
+        "symbol": "VUG",
+        "name": "Vanguard Growth ETF",
+        "category": "large_cap_growth",
+        "risk_level": "medium",
+        "min_investment": 100,
+        "expense_ratio": 0.04,
+        "historical_volatility": 18.5,
+        "emotional_suitability": "growth_focused",
+        "description": "Growth stocks for moderate risk tolerance"
+      },
+      {
+        "symbol": "VBR",
+        "name": "Vanguard Small-Cap Value ETF",
+        "category": "small_cap_value",
+        "risk_level": "high",
+        "min_investment": 100,
+        "expense_ratio": 0.07,
+        "historical_volatility": 22.8,
+        "emotional_suitability": "high_risk_comfort",
+        "description": "Higher volatility, higher potential returns"
+      },
+      {
+        "symbol": "VXUS",
+        "name": "Vanguard Total International Stock ETF",
+        "category": "international",
+        "risk_level": "medium",
+        "min_investment": 100,
+        "expense_ratio": 0.08,
+        "historical_volatility": 19.3,
+        "emotional_suitability": "diversification_focused",
+        "description": "International diversification"
+      },
+      {
+        "symbol": "BND",
+        "name": "Vanguard Total Bond Market ETF",
+        "category": "bonds",
+        "risk_level": "low",
+        "min_investment": 100,
+        "expense_ratio": 0.03,
+        "historical_volatility": 4.2,
+        "emotional_suitability": "conservative",
+        "description": "Stability and income focus"
+      }
+    ]
+  },
+  "account": {
+    "account_id": "acc_001",
+    "account_type": "taxable_brokerage",
+    "net_worth": 325000.00,
+    "available_cash": 12450.25,
+    "buying_power": 25000.00
+  },
+  "user_profile": {
+    "investment_experience": "intermediate",
+    "risk_tolerance": "moderate_aggressive",
+    "investment_goals": ["long_term_growth", "retirement_planning", "wealth_building"],
+    "time_horizon": "15+ years",
+    "age_range": "30-35",
+    "income_stability": "stable",
+    "financial_knowledge": "good"
+  },
+  "market_data": {
+    "vix": 22.8,
+    "fear_greed_index": 42,
+    "market_trend": "neutral_bearish",
+    "sector_performance": {
+      "technology": -2.1,
+      "healthcare": 0.8,
+      "financials": -0.5,
+      "energy": 1.2
+    }
+  },
+  "psychological_profile": {
+    "personality_type": "analytical_cautious",
+    "stress_indicators": [
+      "market_volatility",
+      "negative_news",
+      "portfolio_decline"
+    ],
+    "confidence_boosters": [
+      "systematic_investing",
+      "diversification",
+      "long_term_perspective"
+    ],
+    "preferred_communication": "data_driven_supportive"
+  }
+}

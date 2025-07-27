@@ -1,0 +1,113 @@
+{
+    "user_id": "user_12345",
+    "timestamp": "2025-01-25T10:30:00Z",
+    "portfolio": {
+      "total_market_value": 185750.50,
+      "cash_balance": 8450.25,
+      "total_return": 22350.75,
+      "total_return_percent": 13.65,
+      "day_change": -2150.30,
+      "day_change_percent": -1.14,
+      "week_change": 3420.60,
+      "month_change": -850.40,
+      "ytd_change": 15200.30,
+      "holdings": [
+        {
+          "symbol": "AAPL",
+          "company_name": "Apple Inc.",
+          "quantity": 65.0,
+          "current_price": 178.45,
+          "market_value": 11599.25,
+          "cost_basis": 10800.00,
+          "unrealized_pnl": 799.25,
+          "allocation_percent": 6.24,
+          "sector": "Technology"
+        },
+        {
+          "symbol": "MSFT",
+          "company_name": "Microsoft Corporation",
+          "quantity": 45.0,
+          "current_price": 425.80,
+          "market_value": 19161.00,
+          "cost_basis": 18000.00,
+          "unrealized_pnl": 1161.00,
+          "allocation_percent": 10.31,
+          "sector": "Technology"
+        },
+        {
+          "symbol": "SPY",
+          "company_name": "SPDR S&P 500 ETF",
+          "quantity": 120.0,
+          "current_price": 580.25,
+          "market_value": 69630.00,
+          "cost_basis": 65000.00,
+          "unrealized_pnl": 4630.00,
+          "allocation_percent": 37.49,
+          "sector": "Diversified"
+        },
+        {
+          "symbol": "TSLA",
+          "company_name": "Tesla Inc.",
+          "quantity": 25.0,
+          "current_price": 248.50,
+          "market_value": 6212.50,
+          "cost_basis": 7500.00,
+          "unrealized_pnl": -1287.50,
+          "allocation_percent": 3.34,
+          "sector": "Automotive"
+        }
+      ]
+    },
+    "transactions": [
+      {
+        "transaction_id": "txn_001",
+        "date": "2025-01-22",
+        "transaction_type": "BUY",
+        "symbol": "SPY",
+        "quantity": 10.0,
+        "price": 582.75,
+        "total_amount": 5827.50,
+        "emotional_tag": "systematic",
+        "description": "Monthly systematic investment"
+      },
+      {
+        "transaction_id": "txn_002",
+        "date": "2025-01-20",
+        "transaction_type": "SELL",
+        "symbol": "TSLA",
+        "quantity": 5.0,
+        "price": 245.80,
+        "total_amount": 1229.00,
+        "emotional_tag": "anxious",
+        "description": "Reducing volatile position"
+      },
+      {
+        "transaction_id": "txn_003",
+        "date": "2025-01-18",
+        "transaction_type": "BUY",
+        "symbol": "AAPL",
+        "quantity": 15.0,
+        "price": 176.20,
+        "total_amount": 2643.00,
+        "emotional_tag": "confident",
+        "description": "Adding to core position"
+      }
+    ],
+    "account": {
+      "account_id": "acc_001",
+      "account_type": "taxable_brokerage",
+      "net_worth": 225000.00
+    },
+    "user_profile": {
+      "investment_experience": "intermediate",
+      "risk_tolerance": "moderate_aggressive",
+      "investment_goals": ["long_term_growth", "retirement_planning"],
+      "time_horizon": "15+ years",
+      "age_range": "30-35"
+    },
+    "market_data": {
+      "vix": 22.8,
+      "fear_greed_index": 42,
+      "market_trend": "neutral_bearish"
+    }
+  }

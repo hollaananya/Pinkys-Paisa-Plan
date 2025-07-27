@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Financial Ecosystem - Agent Orchestrator</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for better aesthetics and font */
+        body {
+            font-family: "Inter", sans-serif;
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #0f172a, #1e293b); /* Darker gradient */
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1.5rem;
+            overflow-x: hidden;
+            color: #f8fafc;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-section {
+            width: 100%;
+            max-width: 900px;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInDown 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        @keyframes fadeInDown {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-section h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #f59e0b 0%, #ef4444 50%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-section p {
+            font-size: 1.4rem;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .freedom-message {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #10b981;
+            text-shadow: 0 2px 5px rgba(16, 185, 129, 0.3);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.03); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .agents-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            background-color: rgba(30, 41, 59, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            backdrop-filter: blur(8px);
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .agent-button {
+            display: block;
+            width: 100%;
+            height: 140px;
+            position: relative;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to));
+        }
+
+        .agent-button-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .agent-icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+
+        .agent-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .agent-port {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        .agent-button:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px var(--glow-color);
+        }
+
+        .agent-button:active {
+            transform: translateY(-4px) scale(0.98);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Individual agent colors */
+        .investment-therapy {
+            --gradient-from: #667eea;
+            --gradient-to: #764ba2;
+            --glow-color: rgba(102, 126, 234, 0.6);
+        }
+
+        .time-machine {
+            --gradient-from: #2196F3;
+            --gradient-to: #21CBF3;
+            --glow-color: rgba(33, 150, 243, 0.6);
+        }
+
+        .family-planner {
+            --gradient-from: #E91E63;
+            --gradient-to: #FF6B9D;
+            --glow-color: rgba(233, 30, 99, 0.6);
+        }
+
+        .tax-genome {
+            --gradient-from: #FF9800;
+            --gradient-to: #FF5722;
+            --glow-color: rgba(255, 152, 0, 0.6);
+        }
+
+        .status-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-online { background-color: #10b981; }
+        .status-offline { background-color: #ef4444; }
+        .status-loading { background-color: #f59e0b; }
+
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .hero-section h1 {
+                font-size: 3rem;
+            }
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+            .freedom-message {
+                font-size: 1.4rem;
+            }
+            .agent-button {
+                height: 120px;
+            }
+            .agent-icon {
+                font-size: 2rem;
+            }
+            .agent-title {
+                font-size: 1rem;
+            }
+            .agents-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="hero-section">
+        <h1 class="mb-4">AI Financial Ecosystem</h1>
+        <p>
+            Welcome to your intelligent financial companion. Four specialized AI agents working together 
+            to revolutionize your financial life - from investment therapy to family planning.
+        </p>
+        <p class="freedom-message">
+            🚀 Master Your Financial Future with AI
+        </p>
+    </div>
+
+    <div class="agents-container">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-100">Your AI Financial Agents</h2>
+        
+        <!-- Agent Buttons Section: 2x2 Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Investment Therapy Agent -->
+            <a href="http://localhost:8502" target="_blank" class="agent-button investment-therapy" onclick="trackAgentClick('investment-therapy')">
+                <span class="agent-button-content">
+                    <div class="agent-icon">🧠💰</div>
+                    <div class="agent-title">Investment Therapy</div>
+                    <div class="agent-port">Port 8502</div>
+                </span>
+            </a>
+
+            <!-- Time Machine Agent -->
+            <a href="http://localhost:8503" target="_blank" class="agent-button time-machine" onclick="trackAgentClick('time-machine')">
+                <span class="agent-button-content">
+                    <div class="agent-icon">⏰🔮</div>
+                    <div class="agent-title">Time Machine</div>
+                    <div class="agent-port">Port 8503</div>
+                </span>
+            </a>
+
+            <!-- Family Planner Agent -->
+            <a href="http://localhost:8504" target="_blank" class="agent-button family-planner" onclick="trackAgentClick('family-planner')">
+                <span class="agent-button-content">
+                    <div class="agent-icon">👨‍👩‍👧‍👦💕</div>
+                    <div class="agent-title">Family Planner</div>
+                    <div class="agent-port">Port 8504</div>
+                </span>
+            </a>
+
+            <!-- Tax Genome Agent -->
+            <a href="http://localhost:8505" target="_blank" class="agent-button tax-genome" onclick="trackAgentClick('tax-genome')">
+                <span class="agent-button-content">
+                    <div class="agent-icon">📊💸</div>
+                    <div class="agent-title">Tax Genome</div>
+                    <div class="agent-port">Port 8505</div>
+                </span>
+            </a>
+        </div>
+
+        <!-- Status Section -->
+        <div class="status-section">
+            <h3 class="text-xl font-bold mb-4 text-center text-gray-200">System Status</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div>
+                    <div class="status-indicator status-loading" id="status-investment"></div>
+                    <span class="text-sm">Investment Therapy</span>
+                </div>
+                <div>
+                    <div class="status-indicator status-loading" id="status-time"></div>
+                    <span class="text-sm">Time Machine</span>
+                </div>
+                <div>
+                    <div class="status-indicator status-loading" id="status-family"></div>
+                    <span class="text-sm">Family Planner</span>
+                </div>
+                <div>
+                    <div class="status-indicator status-loading" id="status-tax"></div>
+                    <span class="text-sm">Tax Genome</span>
+                </div>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <button onclick="checkAllAgents()" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-semibold transition-colors">
+                    🔍 Check All Agents
+                </button>
+                <button onclick="openAllAgents()" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg font-semibold transition-colors ml-3">
+                    🚀 Open All Agents
+                </button>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="mt-6 p-4 bg-slate-800/50 rounded-lg border border-slate-600/50">
+            <h4 class="font-bold text-amber-400 mb-2">🏃‍♂️ Quick Start Instructions:</h4>
+            <ol class="text-sm space-y-1 text-gray-300">
+                <li>1. <strong>Start your agents</strong> in separate terminals using the port commands</li>
+                <li>2. <strong>Click the agent buttons</strong> above to open each one</li>
+                <li>3. <strong>Each agent</strong> specializes in different aspects of your financial life</li>
+                <li>4. <strong>Data syncs</strong> between agents for a unified experience</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Agent URLs configuration
+        const AGENT_URLS = {
+            'investment-therapy': 'http://localhost:8502',
+            'time-machine': 'http://localhost:8503',
+            'family-planner': 'http://localhost:8504',
+            'tax-genome': 'http://localhost:8505'
+        };
+
+        // Track agent clicks for analytics
+        function trackAgentClick(agentName) {
+            console.log(`🎯 Agent clicked: ${agentName}`);
+            // You can add analytics tracking here later
+        }
+
+        // Check if an agent is running
+        async function checkAgent(agentId, url) {
+            const statusElement = document.getElementById(`status-${agentId}`);
+            
+            try {
+                // Try to fetch the agent URL
+                const response = await fetch(url, {
+                    method: 'HEAD',
+                    mode: 'no-cors'
+                });
+                
+                statusElement.className = 'status-indicator status-online';
+                return true;
+            } catch (error) {
+                statusElement.className = 'status-indicator status-offline';
+                return false;
+            }
+        }
+
+        // Check all agents
+        async function checkAllAgents() {
+            console.log('🔍 Checking all agents...');
+            
+            const agents = [
+                { id: 'investment', url: AGENT_URLS['investment-therapy'] },
+                { id: 'time', url: AGENT_URLS['time-machine'] },
+                { id: 'family', url: AGENT_URLS['family-planner'] },
+                { id: 'tax', url: AGENT_URLS['tax-genome'] }
+            ];
+
+            // Set all to loading first
+            agents.forEach(agent => {
+                document.getElementById(`status-${agent.id}`).className = 'status-indicator status-loading';
+            });
+
+            // Check each agent
+            for (const agent of agents) {
+                await checkAgent(agent.id, agent.url);
+                await new Promise(resolve => setTimeout(resolve, 500)); // Small delay
+            }
+        }
+
+        // Open all agents at once
+        function openAllAgents() {
+            console.log('🚀 Opening all agents...');
+            
+            Object.entries(AGENT_URLS).forEach(([name, url], index) => {
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, index * 1000); // Stagger opening by 1 second each
+            });
+        }
+
+        // Auto-check agents on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🎯 AI Financial Ecosystem Orchestrator Loaded');
+            
+            // Check agents after a short delay
+            setTimeout(() => {
+                checkAllAgents();
+            }, 2000);
+
+            // Set up periodic checks every 30 seconds
+            setInterval(checkAllAgents, 30000);
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case '1':
+                        e.preventDefault();
+                        window.open(AGENT_URLS['investment-therapy'], '_blank');
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        window.open(AGENT_URLS['time-machine'], '_blank');
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        window.open(AGENT_URLS['family-planner'], '_blank');
+                        break;
+                    case '4':
+                        e.preventDefault();
+                        window.open(AGENT_URLS['tax-genome'], '_blank');
+                        break;
+                    case 'a':
+                        e.preventDefault();
+                        openAllAgents();
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
