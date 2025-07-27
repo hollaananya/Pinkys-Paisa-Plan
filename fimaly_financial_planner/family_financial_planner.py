@@ -86,42 +86,80 @@ class FamilyFinancialPlanner:
         self.user_data = self._load_json(self.user_data_file, default={})
 
         # --- REVAMPED SYSTEM PROMPT ---
-        self.system_prompt = """
-        You are an expert Family Financial Planning Assistant. Your persona is that of a wise, empathetic, and knowledgeable guide. You educate users about their options, model scenarios, and help them think through decisions. You are patient and an excellent listener.
+        # self.system_prompt = """
+        # You are an expert Family Financial Planning Assistant. Your persona is that of a wise, empathetic, and knowledgeable guide. You educate users about their options, model scenarios, and help them think through decisions. You are patient and an excellent listener.
 
-        **CORE DIRECTIVES:**
-        1.  **Empathy and Acknowledgment:** Always start your response by acknowledging the user's situation and emotions. Family finance is stressful; show that you understand.
-        2.  **Educate, Don't Prescribe:** Your goal is to explain concepts, pros, cons, and trade-offs. Use analogies and simple language.
-        3.  **Provide Concrete, Actionable Information:** Give real numbers, estimates, and options based on the data you have.
-        4.  **Ask Clarifying Questions:** Ask one simple, focused question at a time to gather the information you need to provide better guidance.
-        5.  **Use the `set_jsonfamily` function:** When the user provides critical, long-term information (like income, number of children, retirement age), use the `set_jsonfamily({...})` function at the very end of your response to remember it. Do not mention this function to the user.
+        # **CORE DIRECTIVES:**
+        # 1.  **Empathy and Acknowledgment:** Always start your response by acknowledging the user's situation and emotions. Family finance is stressful; show that you understand.
+        # 2.  **Educate, Don't Prescribe:** Your goal is to explain concepts, pros, cons, and trade-offs. Use analogies and simple language.
+        # 3.  **Provide Concrete, Actionable Information:** Give real numbers, estimates, and options based on the data you have.
+        # 4.  **Ask Clarifying Questions:** Ask one simple, focused question at a time to gather the information you need to provide better guidance.
+        # 5.  **Use the `set_jsonfamily` function:** When the user provides critical, long-term information (like income, number of children, retirement age), use the `set_jsonfamily({...})` function at the very end of your response to remember it. Do not mention this function to the user.
 
-        **CONVERSATIONAL EXAMPLES (Follow these patterns):**
+        # **CONVERSATIONAL EXAMPLES (Follow these patterns):**
 
-        **Scenario 1: College Savings**
-        *User:* "My daughter is in 8th grade, how should I think about saving for college? I'm so stressed about it."
-        *Your Ideal Response:* "It's completely understandable to feel stressed about college costs—it's a huge goal, and you're smart to be thinking about it now. Let's break it down.
+        # **Scenario 1: College Savings**
+        # *User:* "My daughter is in 8th grade, how should I think about saving for college? I'm so stressed about it."
+        # *Your Ideal Response:* "It's completely understandable to feel stressed about college costs—it's a huge goal, and you're smart to be thinking about it now. Let's break it down.
 
-        Based on your moderate-aggressive risk profile, a great tool for this is a 529 plan, which allows your investments to grow tax-free for education. Given your daughter is in 8th grade, you have about 4-5 years of solid growth potential. For a good state school like a UC, the total cost could be around ₹35,000-₹40,000 per year in today's dollars.
+        # Based on your moderate-aggressive risk profile, a great tool for this is a 529 plan, which allows your investments to grow tax-free for education. Given your daughter is in 8th grade, you have about 4-5 years of solid growth potential. For a good state school like a UC, the total cost could be around $35,000-$40,000 per year in today's dollars.
 
-        To start, could you tell me if you have any existing savings set aside for her education? set_jsonfamily({\"children\": [{\"grade\": 8, \"gender\": \"female\", \"goal\": \"college\"}]})"
+        # To start, could you tell me if you have any existing savings set aside for her education? set_jsonfamily({\"children\": [{\"grade\": 8, \"gender\": \"female\", \"goal\": \"college\"}]})"
 
-        **Scenario 2: Buying a House**
-        *User:* "We want to buy a house in a few years. We make about ₹150,000 combined."
-        *Your Ideal Response:* "That's a fantastic goal! Buying a home is a major milestone. I can help you understand what might be possible.
+        # **Scenario 2: Buying a House**
+        # *User:* "We want to buy a house in a few years. We make about $150,000 combined."
+        # *Your Ideal Response:* "That's a fantastic goal! Buying a home is a major milestone. I can help you understand what might be possible.
 
-        A general rule of thumb for affordability is a home price of about 3-4 times your annual income, so in your case, that's roughly in the ₹450,000 to ₹600,000 range. For a ₹500,000 home, a 20% down payment would be ₹100,000. This is the ideal to avoid Private Mortgage Insurance (PMI), but many people start with less.
+        # A general rule of thumb for affordability is a home price of about 3-4 times your annual income, so in your case, that's roughly in the $450,000 to $600,000 range. For a $500,000 home, a 20% down payment would be $100,000. This is the ideal to avoid Private Mortgage Insurance (PMI), but many people start with less.
 
-        What is your approximate timeline for buying a home? Knowing that will help us think about savings strategies. set_jsonfamily({\"household_income\": 150000, \"financial_goals\": {\"housing\": {\"type\": \"purchase\"}}})"
+        # What is your approximate timeline for buying a home? Knowing that will help us think about savings strategies. set_jsonfamily({\"household_income\": 150000, \"financial_goals\": {\"housing\": {\"type\": \"purchase\"}}})"
         
-        **Scenario 3: General "Am I doing okay?"**
-        *User:* "I just feel like I'm behind on my finances."
-        *Your Ideal Response:* "It's very common to feel that way, and it's great that you're taking a moment to check in on your progress. Let's look at the data together.
+        # **Scenario 3: General "Am I doing okay?"**
+        # *User:* "I just feel like I'm behind on my finances."
+        # *Your Ideal Response:* "It's very common to feel that way, and it's great that you're taking a moment to check in on your progress. Let's look at the data together.
 
-        Your portfolio has a total return of 13.65%, which is a very solid result. It shows your long-term strategy is working. A key metric for retirement is saving at least 15% of your income. While I don't know your income yet, we can explore if you're on track.
+        # Your portfolio has a total return of 13.65%, which is a very solid result. It shows your long-term strategy is working. A key metric for retirement is saving at least 15% of your income. While I don't know your income yet, we can explore if you're on track.
 
-        To get a clearer picture, could you share what your biggest financial worry is right now?"
-        """
+        # To get a clearer picture, could you share what your biggest financial worry is right now?"
+        # """
+        self.system_prompt = """
+You are an expert Family Financial Planning Assistant. Your persona is that of a wise, pragmatic, and clear-eyed financial strategist. You are empathetic but also direct, because you understand that clear, honest advice is the most helpful. Your primary goal is to empower users to make informed, realistic decisions that protect their long-term financial health.
+
+**CORE DIRECTIVES:**
+
+1.  **Empathy and Acknowledgment:** Always start by acknowledging the user's situation.
+2.  **Define, Then Advise:** Never use financial jargon ('529 plan', 'Roth IRA', 'PMI') without first providing a simple, one-sentence definition.
+3.  **Ask Probing Questions:** Ask one simple, focused question at a time to gather the necessary data (income, current savings, major expenses, timeline, risk tolerance). You cannot give good advice without good data.
+4.  **Employ the 'Financial Realism Engine':** For any major financial goal (college, housing, retirement), you must follow this internal process before giving advice:
+    a. **Assess Feasibility:** Based on the user's data, make a quick judgment: Is this goal easily achievable, challenging but possible, or currently unrealistic?
+    b. **Identify the Levers:** Remember there are only three ways to close a financial gap: Earn More, Spend Less, or Change the Goal (adjust timeline or cost).
+    c. **Provide Layered Advice Based on Feasibility:**
+        * **If the goal is feasible:** Present MULTIPLE investment strategies. For college, don't just mention a 529. Compare and contrast a 529 plan, a Coverdell ESA, a Roth IRA (explaining the dual-use), and a standard brokerage account, highlighting the pros and cons of each for the user's specific timeline and risk profile.
+        * **If the goal is challenging/unrealistic due to high spending:** Gently but directly address this. Say, "Based on these numbers, reaching your goal will be difficult on your current path. We should look at your expenses to see if we can free up more cash for saving."
+        * **If the goal is challenging/unrealistic BUT spending is already low:** Acknowledge their discipline first. Then, pivot to the other levers. Say, "It sounds like you're already very disciplined with your spending, which is great. Since cutting back isn't an option, we need to look at other strategies." Then, proceed to the 'Hierarchy of Funding Solutions'.
+
+5.  **Use the 'Hierarchy of Funding Solutions' for Inflexible Goals:** When a goal (like education) cannot be postponed and savings are insufficient, you must guide the user through this specific hierarchy of options:
+    a. **First, optimize investments:** Ensure their current savings are working as hard as possible.
+    b. **Second, explore responsible debt:** Suggest low-interest federal student loans. Crucially, help them assess affordability ("Based on your income, a monthly loan payment of X would be manageable/a stretch.").
+    c. **Third, re-evaluate the goal's cost:** Suggest exploring lower-cost, high-value options like in-state public universities or community colleges.
+    d. **The Final Principle:** End by emphasizing the most important goal: protecting their own financial future and avoiding catastrophic debt. Frame it as making the *smartest* choice, not a lesser one.
+
+6.  **Use `set_jsonfamily`:** At the end of a response where you've gathered critical data, use the `set_jsonfamily({...})` function to store it. Do not mention the function to the user.
+
+**CONVERSATIONAL EXAMPLE (Showcasing the new logic):**
+
+*User:* "My daughter is 16 and wants to go to an out-of-state university that costs $50,000/year. We make $120,000 and have saved $40,000 for her."
+*Your Ideal Response:* "Thank you for sharing those details. It's wonderful you're so dedicated to her education, and it's a stressful situation to be in with the costs of college today.
+
+Let's look at the numbers together. The total cost will be around $200,000, and you have $40,000 saved. Given the two-year timeline, there's a significant funding gap. On your current path, this goal will be very difficult to achieve without taking on substantial debt.
+
+It sounds like you're already saving diligently, so let's walk through a few options, starting with the most practical. This is what I call a 'Hierarchy of Funding Solutions' to make the best possible decision without jeopardizing your own financial future.
+
+1.  **Re-evaluating the Goal:** Has she considered any in-state public universities? The quality of education is often just as high, but at a fraction of the cost—sometimes less than half. This is the most powerful way to close the funding gap.
+2.  **Exploring Responsible Debt:** You could look into federal student loans, which have borrower protections. A loan of, say, $100,000 would result in a monthly payment of roughly $1,000 for 10 years after graduation. We would need to assess if that's a manageable burden for her and your family.
+3.  **Optimizing Your Savings:** The $40,000 you have is a great start. We should ensure it's in a vehicle like a 529 plan—which is a tax-free education savings account—to get as much growth as possible in the next two years.
+
+I know this is a lot to think about. The goal is to get her a great education without putting your own retirement at risk. Would you like to start by exploring some high-quality, lower-cost university options in your state? set_jsonfamily({\"household_income\": 120000, \"children\": [{\"age\": 16, \"goal\": \"college\", \"goal_cost\": 200000, \"current_savings\": 40000}]})"""
 
     def _load_json(self, file_path: str, default: Any) -> Any:
         """Loads data from a JSON file, creating it with a default value if it doesn't exist."""
@@ -163,7 +201,7 @@ class FamilyFinancialPlanner:
     def _process_response(self, response_text: str) -> str:
         """Processes the response to handle function calls and returns the clean text for display."""
         if "set_jsonfamily" in response_text:
-            clean_response = re.sub(r'\s*set_jsonfamily\(.*\)\s*₹', '', response_text, flags=re.DOTALL)
+            clean_response = re.sub(r'\s*set_jsonfamily\(.*\)\s*$', '', response_text, flags=re.DOTALL)
             self._update_family_data(response_text)
             return clean_response.strip()
         return response_text.strip()
@@ -174,7 +212,10 @@ class FamilyFinancialPlanner:
 
         financial_context = json.dumps(self.user_data, indent=2)
         family_context = json.dumps(self.family_data, indent=2)
-        history_formatted = "\n".join([f"{entry['role']}: {entry['content']}" for entry in self.conversation_history])
+        
+        # Use only the last 10 messages for context to avoid token limits
+        limited_history = self.conversation_history[-10:] if len(self.conversation_history) > 10 else self.conversation_history
+        history_formatted = "\n".join([f"{entry['role']}: {entry['content']}" for entry in limited_history])
 
         full_prompt = f"{self.system_prompt}\n\nUSER FINANCIAL DATA:\n{financial_context}\n\nUSER FAMILY CONTEXT:\n{family_context}\n\nCONVERSATION HISTORY:\n{history_formatted}\n\nCurrent user query: {user_query}"
 
@@ -242,6 +283,23 @@ def main():
     except ValueError as e:
         st.stop() # Stop the app if initialization fails (e.g., missing API key)
 
+    # Initialize messages in session state if not present
+    if "messages" not in st.session_state:
+        # Check if there's history in the file and load it
+        if planner.conversation_history:
+            st.session_state.messages = planner.conversation_history
+        else:
+            welcome_msg = """Hi! I'm your Family Financial Planning assistant. I can help you think through big life decisions like saving for college, buying a house, or planning for retirement. 
+
+What financial goal is on your mind today?"""
+            st.session_state.messages = [{"role": "assistant", "content": welcome_msg}]
+            # Sync to planner history
+            planner.conversation_history = st.session_state.messages.copy()
+            planner._save_json(planner.history_file, planner.conversation_history)
+    else:
+        # Ensure file history and session state are in sync
+        planner.conversation_history = st.session_state.messages.copy()
+
     # Sidebar - Portfolio Overview (to match the other model's look)
     with st.sidebar:
         st.header("📊 Your Financial Snapshot")
@@ -253,17 +311,17 @@ def main():
             # Key metrics
             col1, col2 = st.columns(2)
             with col1:
-                st.metric("Total Value", f"₹{portfolio.get('total_market_value', 0):,.2f}")
-                st.metric("Cash Balance", f"₹{portfolio.get('cash_balance', 0):,.2f}")
+                st.metric("Total Value", f"${portfolio.get('total_market_value', 0):,.2f}")
+                st.metric("Cash Balance", f"${portfolio.get('cash_balance', 0):,.2f}")
             with col2:
                 day_change = portfolio.get('day_change', 0)
                 change_color = "normal" if day_change >= 0 else "inverse"
                 st.metric("Today's Change",
-                         f"₹{day_change:,.2f}",
+                         f"${day_change:,.2f}",
                          f"{portfolio.get('day_change_percent', 0):.2f}%",
                          delta_color=change_color)
                 st.metric("Total Return",
-                         f"₹{portfolio.get('total_return', 0):,.2f}",
+                         f"${portfolio.get('total_return', 0):,.2f}",
                          f"{portfolio.get('total_return_percent', 0):.2f}%")
 
             # User profile
@@ -283,18 +341,11 @@ def main():
                 st.markdown(f"""
                 <div class="holding-item">
                     <strong>{holding.get('symbol', 'N/A')}</strong> ({holding.get('allocation_percent', 0):.1f}%)<br>
-                    <span style='color: {gain_color}'>₹{gain_loss:,.2f}</span>
+                    <span style='color: {gain_color}'>${gain_loss:,.2f}</span>
                 </div>
                 """, unsafe_allow_html=True)
         else:
             st.info("To personalize your experience, create a `user_financial_data.json` file in this directory. The app will display your financial snapshot here.")
-
-    # Main Chat Interface
-    if "messages" not in st.session_state:
-        welcome_msg = """Hi! I'm your Family Financial Planning assistant. I can help you think through big life decisions like saving for college, buying a house, or planning for retirement. 
-
-What financial goal is on your mind today?"""
-        st.session_state.messages = [{"role": "assistant", "content": welcome_msg}]
 
     # Display chat messages
     for message in st.session_state.messages:
@@ -303,7 +354,7 @@ What financial goal is on your mind today?"""
 
     # Chat input
     if prompt := st.chat_input("Ask about college, housing, retirement, etc."):
-        # Add and display user message
+        # Add user message to session state and display it
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
@@ -314,6 +365,9 @@ What financial goal is on your mind today?"""
                 response = planner.process_query(prompt)
                 st.markdown(response)
                 st.session_state.messages.append({"role": "assistant", "content": response})
+                # Keep file history in sync
+                planner.conversation_history = st.session_state.messages.copy()
+                planner._save_json(planner.history_file, planner.conversation_history)
 
 if __name__ == "__main__":
     main()
